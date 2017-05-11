@@ -1,0 +1,4 @@
+com\spring\Configuration\SpringInitializer.class
+com\spring\Controller\SpringController.class
+com\spring\POJO\Message.class
+com\spring\Configuration\SpringConfiguration.class
