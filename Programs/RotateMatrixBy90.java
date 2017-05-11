@@ -6,10 +6,15 @@ public class RotateMatrixBy90 {
 		int[][] mat={{1,2,3},
 					 {4,5,6},
 					 {7,8,9}};
+//		int[][] mat={{1,2,3,1},
+//					 {4,5,6,1},
+//					 {7,8,9,1},
+//					 {7,8,9,1}};
 		
 		printMatrix(mat);
 
 		rotateRightBy90(mat);
+		modifyRowIfZero(mat);
 		
 		
 	}
@@ -29,7 +34,7 @@ public class RotateMatrixBy90 {
 	
 	public static void printMatrix(int [][] mat){
 		for(int i=0;i<mat.length;i++){
-			for(int j=0;j<mat.length;j++){
+			for(int j=0;j<mat[0].length;j++){
 				System.out.print(mat[i][j]+" ");
 			}
 			System.out.println();
@@ -47,5 +52,21 @@ public class RotateMatrixBy90 {
 		System.out.println("Transpose:---------------");
 		printMatrix(mat);
 		return mat;
+	}
+	
+	public static void modifyRowIfZero(int[][] mat){
+		for(int i=0;i<mat.length;i++){
+			for(int j=0;j<mat[0].length;j++){
+				if(mat[i][j]==0){
+					for(int k=0;k<mat[0].length;k++){
+						mat[i][k]=0;
+					}
+				}
+					
+			}
+		}
+		
+		System.out.println("If element is 0 change entire row to 0---------------");
+		printMatrix(mat);
 	}
 }
