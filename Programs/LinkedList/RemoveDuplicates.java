@@ -16,29 +16,49 @@ public class RemoveDuplicates {
 		System.out.println("Nodes added------------------");
 		l.elements();
 		
-		removeDuplicate(l);
-		System.out.println("Duplicates removed--------------");
+//		removeDuplicate(l);
+//		System.out.println("Duplicates removed--------------");
+//		l.elements();
+//		
+		
+		System.out.println("Duplicates removed without buffer----------");
+		removeDuplicateWithoutBuffer(l.first);
 		l.elements();
+		
 		
 	}
 	
 	public static void removeDuplicate(LinkedList l){
 		
 		Node t=l.first;
-		
+		Node prev=null;
 		HashSet<Integer> map=new HashSet<Integer>();
 		
 		while(t.getNext()!=null){
 			if(map.contains(t.getValue()))
-				l.deleteNode(t.getValue());
-			else
+				prev.setNext(t.getNext());
+			else{
 				map.add(t.getValue());
+				prev=t;
+			}			
 			t=t.getNext();
 		}
 
 	}
 	
-	public static void removeDuplicateWithoutBuffer(LinkedList l){
-		
+	public static void removeDuplicateWithoutBuffer(Node head){
+		if(head==null) return;
+		Node current=head;
+		while(current!=null){
+			Node runner=current;
+			while(runner.getNext()!=null){
+				if(runner.getNext().getValue()==current.getValue()){
+					runner.setNext(runner.getNext().getNext());
+				}
+				else
+					runner=runner.getNext();
+			}
+			current=current.getNext();
+		}
 	}
 }
