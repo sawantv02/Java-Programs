@@ -20,6 +20,22 @@ public class LinkedList {
 		}
 	}
 	
+	public void addAtTail(char n){
+		Node t=new Node();
+		t.setC(n);
+		
+		if(first==null)
+			first=t;
+		
+		else{
+			Node last=first;
+			while(last.getNext()!=null){
+				last=last.getNext();
+			}
+			last.setNext(t);
+		}
+	}
+	
 	public boolean deleteNode(int n){
 		Node t=first;
 		Boolean flag=false;
@@ -58,5 +74,13 @@ public class LinkedList {
     }
 
 	
-	
+    public void charelements()
+    {
+        Node p=first;
+        while(p!=null)
+        {
+            System.out.println(p.getC());
+            p=p.getNext();
+        }
+    }
 }
