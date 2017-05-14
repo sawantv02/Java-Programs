@@ -46,6 +46,16 @@ public class LinkedList {
             p=p.getNext();
         }
     }
+    
+    public void display(Node n)
+    {
+        Node head=n;
+        while(head!=null)
+        {
+            System.out.println(head.getValue());
+            head=head.getNext();
+        }
+    }
 
 	
 	
