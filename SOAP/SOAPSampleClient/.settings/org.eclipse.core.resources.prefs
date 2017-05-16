@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/org/vishakha/soap/Hello.java=UTF-8
+encoding//src/org/vishakha/soap/HelloService.java=UTF-8
+encoding//src/org/vishakha/soap/HelloServiceLocator.java=UTF-8
+encoding//src/org/vishakha/soap/HelloSoapBindingStub.java=UTF-8
