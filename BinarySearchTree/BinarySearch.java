@@ -164,6 +164,20 @@ public class BinarySearch {
 		return replace;
 		
 	}
+	
+	public int findDepth(Node node){
+		if(node==null)
+			return 0;
+		else{
+			int ldepth=findDepth(node.leftChild);
+			int rdepth=findDepth(node.rightChild);
+			
+			if(ldepth>rdepth)
+				return ldepth+1;
+			else
+				return rdepth+1;
+		}
+	}
 
 	public static void main(String args[]) {
 
@@ -175,15 +189,18 @@ public class BinarySearch {
 		tree.addNode(75, "elephant");
 		tree.addNode(65, "cheetah");
 		tree.addNode(100, "tiger");
-
+		
 		System.out.println("Inorder Traversal:");
 		tree.inorderTraversal(tree.root);
 
-//		System.out.println("Preorder Traversal:");
-//		tree.preorderTraversal(tree.root);
-//
-//		System.out.println("Postorder Traversal:");
-//		tree.postorderTraversal(tree.root);
+
+		System.out.println("Height of the tree:"+tree.findDepth(tree.root));
+
+		System.out.println("Preorder Traversal:");
+		tree.preorderTraversal(tree.root);
+
+		System.out.println("Postorder Traversal:");
+		tree.postorderTraversal(tree.root);
 
 		System.out.println("Find node:");
 		System.out.println(tree.findNode(15));
