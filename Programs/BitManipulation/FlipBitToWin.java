@@ -10,10 +10,30 @@ public class FlipBitToWin {
 		binaryConvertor(input);
 		
 		System.out.println("Find longest sequence of 1s by flipping a bit:"+longestSequence(input));
-
 		
+		System.out.println("Using optimized solution:"+flipbit(input));	
 		
+	}
+	
+	public static int flipbit(int n){
+		if(~n==0) return Integer.BYTES*8;
 		
+		int currentLen=0;
+		int prevLen=0;
+		int maxLen=0;
+		
+		while(n!=0){
+			if((n & 1)==1)
+				currentLen++;
+			else if((n & 1)==0){
+				prevLen=(n & 2)==0?0:currentLen;
+				currentLen=0;
+			}
+			maxLen=Math.max(prevLen+currentLen+1,maxLen);
+			n>>>=1;
+		}
+		
+		return maxLen;
 	}
 	
 	public static int longestSequence(int n){
