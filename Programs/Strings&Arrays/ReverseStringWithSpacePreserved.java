@@ -7,6 +7,9 @@ public class ReverseStringWithSpacePreserved {
 		String s = "Help Others";
 		System.out.println(s.toCharArray());
 		System.out.println(reverseStringWithSpacePreserved(s));
+		
+		System.out.println("Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order:");
+		System.out.println(reverseWords(s));
 	}
 
 	public static String reverseStringWithSpacePreserved(String s) {
@@ -36,5 +39,20 @@ public class ReverseStringWithSpacePreserved {
 		
 		return sb.toString();
 	}
+	
+    public static String reverseWords(String s) {
+        String str[]=s.split(" ");
+        StringBuffer res=new StringBuffer();
+        
+        for(String st:str){
+            String t=new StringBuffer(st).reverse().toString();
+            res.append(t+" ");
+        }
+        
+        
+    return res.toString().trim();
+
+        
+    }
 
 }
