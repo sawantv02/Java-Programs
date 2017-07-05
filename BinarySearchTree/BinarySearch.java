@@ -3,6 +3,7 @@ package BinarySearchTree;
 public class BinarySearch {
 
 	Node root;
+	int c=0;
 
 	public void addNode(int key, String name) {
 		Node newNode = new Node(key, name);
@@ -178,6 +179,24 @@ public class BinarySearch {
 				return rdepth+1;
 		}
 	}
+	
+	public void secondLargestElement(){	
+		secondLargest(root);
+		
+	}
+	
+	private void secondLargest(Node node){
+		
+		if(node==null)
+			return;	
+		secondLargest(node.rightChild);
+		c++;
+		if(c==2){
+			System.out.println(node.key);
+			return;
+		}
+		secondLargest(node.leftChild);
+	}
 
 	public static void main(String args[]) {
 
@@ -193,23 +212,27 @@ public class BinarySearch {
 		System.out.println("Inorder Traversal:");
 		tree.inorderTraversal(tree.root);
 
-
+		System.out.println("Second Largest Element:");
+		tree.secondLargestElement();
+		
 		System.out.println("Height of the tree:"+tree.findDepth(tree.root));
 
-		System.out.println("Preorder Traversal:");
-		tree.preorderTraversal(tree.root);
-
-		System.out.println("Postorder Traversal:");
-		tree.postorderTraversal(tree.root);
-
-		System.out.println("Find node:");
-		System.out.println(tree.findNode(15));
+//		System.out.println("Preorder Traversal:");
+//		tree.preorderTraversal(tree.root);
+//
+//		System.out.println("Postorder Traversal:");
+//		tree.postorderTraversal(tree.root);
+//
+//		System.out.println("Find node:");
+//		System.out.println(tree.findNode(15));
+//		
+//		System.out.println("Remove Node:");
+//		System.out.println(tree.deleteNode(35));
+//		
+//		System.out.println("Inorder Traversal:");
+//		tree.inorderTraversal(tree.root);
 		
-		System.out.println("Remove Node:");
-		System.out.println(tree.deleteNode(35));
 		
-		System.out.println("Inorder Traversal:");
-		tree.inorderTraversal(tree.root);
 		
 		
 	}
