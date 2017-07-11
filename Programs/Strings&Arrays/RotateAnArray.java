@@ -3,8 +3,8 @@ package Programs;
 public class RotateAnArray {
 	
 	public static void main(String args[]){
-		int arr[]={1,2,3,4,5,6,7};
-		int k=3;
+		int arr[]={1,2};
+		int k=1;
 		
 		System.out.println("Rotate array to the right by k steps:");
 		int result[]=rotate(arr,k);
@@ -23,13 +23,15 @@ public class RotateAnArray {
 	}
 	
 	public static int[] rotate(int arr[],int k){
+        if(arr==null || arr.length<2)
+            return null;
 		int result[]=new int[arr.length];
 		
 		for(int i=0,j=0;i<arr.length;i++,j++){
 			if(i>k){
 				result[j-k-1]=arr[i];
 			}else{
-				result[j+k]=arr[i];
+				result[(j+k)%arr.length]=arr[i];
 			}
 		}
 		
