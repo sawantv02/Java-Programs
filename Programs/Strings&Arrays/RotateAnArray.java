@@ -3,7 +3,7 @@ package Programs;
 public class RotateAnArray {
 	
 	public static void main(String args[]){
-		int arr[]={1,2};
+		int arr[]={1,2,3,4,5,6};
 		int k=1;
 		
 		System.out.println("Rotate array to the right by k steps:");
@@ -23,19 +23,22 @@ public class RotateAnArray {
 	}
 	
 	public static int[] rotate(int arr[],int k){
-        if(arr==null || arr.length<2)
+        if(arr.length <= 1){
             return null;
-		int result[]=new int[arr.length];
-		
-		for(int i=0,j=0;i<arr.length;i++,j++){
-			if(i>k){
-				result[j-k-1]=arr[i];
-			}else{
-				result[(j+k)%arr.length]=arr[i];
-			}
-		}
-		
-		return result;
+        }
+        //step each time to move
+        int step = k % arr.length;
+        int[] tmp = new int[step];
+        for(int i = 0; i < step; i++){
+            tmp[i] = arr[arr.length - step + i];
+        }
+        for(int i = arr.length - step - 1; i >= 0; i--){
+            arr[i + step] = arr[i];
+        }
+        for(int i = 0; i < step; i++){
+            arr[i] = tmp[i];
+        }
+		return arr;
 	}
 	
 	public static int[] rotateInplace(int arr[],int k){
