@@ -47,6 +47,41 @@ public class PrefixInfixPostfix {
 		return output;
 	}
 
+	public String infixToPrefix(String tokens) {
+		String input[] = tokens.split(" ");
+		String output="";
+		for (int i=input.length-1;i>=0;i--) {
+			char ch = input[i].charAt(0);
+			if (Character.isLetterOrDigit(ch)) {
+				output = ch+output;
+			}
+
+			else if (ch == ')') {
+				opstack.push(ch);
+			}
+
+			else if (ch == '(') {
+				char c=opstack.pop();
+				while (c != ')') {
+					output = c+output;
+					c=opstack.pop();
+				}
+			} else {
+				while ((!opstack.isEmpty()) && getPrecedence(opstack.peek()) >= getPrecedence(ch)) {
+					char c = opstack.pop();
+					output = c+output;
+				}
+				opstack.push(ch);
+			}
+		}
+
+		while (!opstack.isEmpty()) {
+			output = opstack.pop()+output;
+		}
+
+		return output;
+	}
+	
 	private int getPrecedence(char ch) {
 		int prec = 0;
 		switch (ch) {
