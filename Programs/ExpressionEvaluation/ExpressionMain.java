@@ -17,6 +17,14 @@ public class ExpressionMain {
 		String op=p.infixToPrefix(expression);
 		System.out.print(op);
 		
+		System.out.println();
+		
+		System.out.print("Prefix to Postfix: ");
+		String op1=p.prefixToPostfix(op);
+		System.out.print(op1);
+		
+		
+		
 	}
 
 }
