@@ -12,8 +12,23 @@ public class ReverseList {
 		l.addAtTail(60);
 		l.display(l.first);
 		
+		System.out.println("Printing using recurrsion:");
+		l.printUsingRec(l.first);
+		System.out.println();
+		
+		System.out.println("Printing in reverse:");
+		l.reversePrintUsingRec(l.first);
+		
+		System.out.println();
 		System.out.println("Reveresing the list:");
-		l.reverseLinkedList(l.first);
+		Node rev=l.reverseLinkedList(l.first);
+		l.printUsingRec(rev);
+		
+		System.out.println();
+		System.out.println("Reversing the list using recurrsion:");
+		Node head=l.reverseUsingRec(rev);
+		l.printUsingRec(head);
 	}
+	
 
 }

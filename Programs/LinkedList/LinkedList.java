@@ -77,7 +77,7 @@ public class LinkedList {
 		}
 	}
 
-	public void reverseLinkedList(Node node) {
+	public Node reverseLinkedList(Node node) {
 		Node current=node;
 		Node prev=null;
 		Node next=null;
@@ -90,7 +90,33 @@ public class LinkedList {
 		
 		node=prev;
 		
+		return node;
+//		display(node);
+	}
+	
+	public void printUsingRec(Node root){
+		if(root==null)
+			return;
+		System.out.print(root.value+" ");
+		printUsingRec(root.next);
+	}
+	
+	public void reversePrintUsingRec(Node root){
+		if(root==null)
+			return;
+		reversePrintUsingRec(root.next);
+		System.out.print(root.value+" ");
+	}
+	
+	
+	
+	public Node reverseUsingRec(Node current){
+		if(current==null || current.next==null)
+			return current;
+		Node remaining=reverseUsingRec(current.next);
+		current.next.next=current;
+		current.next=null;
+		return remaining;
 
-		display(node);
 	}
 }
