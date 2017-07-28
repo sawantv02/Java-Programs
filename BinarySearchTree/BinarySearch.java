@@ -197,6 +197,73 @@ public class BinarySearch {
 		}
 		secondLargest(node.leftChild);
 	}
+	
+	
+	public Node delete(Node root,int data){
+		if(root==null) return null;
+		if(data<root.key)
+			root.leftChild=delete(root.leftChild, data);
+		
+		else if(data>root.key)
+			root.rightChild=delete(root.rightChild, data);
+		
+		else{
+			if(root.leftChild==null){
+				return root.rightChild;
+			}else if(root.rightChild==null){
+				return root.leftChild;
+			}
+				Node temp=findMin(root.rightChild);
+				root.key=temp.key;
+				root.name=temp.name;
+				root.rightChild=delete(root.rightChild,root.key);
+			
+		}
+		return root;
+	}
+	
+	private Node findMin(Node node){
+		while(node.leftChild!=null)
+			node=node.leftChild;
+		return node;
+	}
+	
+	public Node inOrderSuccessor(Node root,int data){
+		if(root==null)
+			return root;
+		Node p=findNode(data);
+		return successor(root, p);
+			
+	}
+	
+	private Node successor(Node root,Node p){
+		if(root==null)
+			return null;
+		if(root.key<=p.key)
+			return successor(root.rightChild, p);
+		else{
+			Node left=successor(root.leftChild, p);
+			return (left!=null)?left:root;
+		}
+	}
+	
+	public Node inOrderPredecessor(Node root,int data){
+		if(root==null)
+			return root;
+		Node p=findNode(data);
+		return predecessor(root, p);
+	}
+	
+	private Node predecessor(Node root,Node p){
+		if(root==null)
+			return null;
+		if(root.key>=p.key)
+			return predecessor(root.leftChild, p);
+		else{
+			Node right=predecessor(root.rightChild, p);
+			return (right!=null)?right:root;
+		}
+	}
 
 	public static void main(String args[]) {
 
@@ -217,23 +284,26 @@ public class BinarySearch {
 		
 		System.out.println("Height of the tree:"+tree.findDepth(tree.root));
 
-//		System.out.println("Preorder Traversal:");
-//		tree.preorderTraversal(tree.root);
-//
-//		System.out.println("Postorder Traversal:");
-//		tree.postorderTraversal(tree.root);
-//
-//		System.out.println("Find node:");
-//		System.out.println(tree.findNode(15));
-//		
-//		System.out.println("Remove Node:");
-//		System.out.println(tree.deleteNode(35));
-//		
-//		System.out.println("Inorder Traversal:");
-//		tree.inorderTraversal(tree.root);
+		System.out.println("Preorder Traversal:");
+		tree.preorderTraversal(tree.root);
+
+		System.out.println("Postorder Traversal:");
+		tree.postorderTraversal(tree.root);
+
+		System.out.println("Find node:");
+		System.out.println(tree.findNode(15));
 		
+		System.out.println("Remove Node:");
+		tree.delete(tree.root,50);
 		
+		System.out.println("Inorder Traversal:");
+		tree.inorderTraversal(tree.root);
 		
+		System.out.println("Inorder successor:");
+		System.out.println(tree.inOrderSuccessor(tree.root,25));
+
+		System.out.println("Inorder predecessor:");
+		System.out.println(tree.inOrderPredecessor(tree.root,35));
 		
 	}
 
