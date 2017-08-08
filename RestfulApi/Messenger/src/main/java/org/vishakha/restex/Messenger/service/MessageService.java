@@ -1,6 +1,7 @@
 package org.vishakha.restex.Messenger.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -10,16 +11,36 @@ import org.vishakha.restex.Messenger.model.*;
 public class MessageService {
 
 	private Map<Long, Message> messages = DatabaseClass.getMessages();
-	
-	public MessageService(){
-		messages.put(1L,new Message(1,"Hello World!","vishakha"));
-		messages.put(2L,new Message(2,"Hello jersey!","vishakha"));
+
+	public MessageService() {
+		messages.put(1L, new Message(1, "Hello World!", "vishakha"));
+		messages.put(2L, new Message(2, "Hello jersey!", "vishakha"));
 	}
 
 	public List<Message> getAllMessages() {
 
 		return new ArrayList<>(messages.values());
 
+	}
+
+	public List<Message> getAllMessagesByYear(int year) {
+		List<Message> messagesByYear = new ArrayList<>();
+		Calendar cal = Calendar.getInstance();
+		for (Message message : messages.values()) {
+			cal.setTime(message.getCreated());
+			if (cal.get(Calendar.YEAR) == year)
+				messagesByYear.add(message);
+		}
+
+		return messagesByYear;
+
+	}
+
+	public List<Message> getAllMessagesPaginated(int start, int size) {
+		List<Message> list = new ArrayList<>(messages.values());
+		if (start + size > list.size())
+			return new ArrayList<Message>();
+		return list.subList(start, start + size);
 	}
 
 	public Message getMessage(long id) {
