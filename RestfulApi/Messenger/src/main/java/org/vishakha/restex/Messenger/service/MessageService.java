@@ -13,8 +13,13 @@ public class MessageService {
 	private Map<Long, Message> messages = DatabaseClass.getMessages();
 
 	public MessageService() {
+		
 		messages.put(1L, new Message(1, "Hello World!", "vishakha"));
+		Comment c1=new Comment(1, "comment 1 for message 1","vishu");
+		messages.get(1).getComments().put(c1.getId(),c1);
 		messages.put(2L, new Message(2, "Hello jersey!", "vishakha"));
+		Comment c2=new Comment(2, "comment 1 for message 2","vishu");
+		messages.get(2).getComments().put(c2.getId(),c2);
 	}
 
 	public List<Message> getAllMessages() {
